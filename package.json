@@ -1,0 +1,20 @@
+{
+  "name": "parkingbay",
+  "version": "1.0.0",
+  "description": "A tool to manage a vehicle parking lot.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/krispi1/ParkingBay.git"
+  },
+  "keywords": [],
+  "author": "gksiele",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/krispi1/ParkingBay/issues"
+  },
+  "homepage": "https://github.com/krispi1/ParkingBay#readme"
+}
