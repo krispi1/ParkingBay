@@ -7,8 +7,27 @@ app.use('/static', express.static('public'));
 
 app.use(require('./routes'));
 
-app.get(['', '/'], (req, res) => {
+/* /////
+var requestTime = function (req, res, next) {
+    req.requestTime = Date.now()
+    next()
+  }
+  
+  app.use(requestTime)
+  
+  app.get('/', function (req, res) {
+    var responseText = 'Hello World!<br>'
+    responseText += '<small>Requested at: ' + req.requestTime + '</small>'
+    res.send(responseText)
+  })
+///// */
+
+/* app.get(['', '/'], (req, res) => {
     res.sendFile(path.join(__dirname + '/index.html'));
+}); */
+
+app.get(['', '/'], (req, res) => {
+  res.send(require('./homepage'));
 });
 
 app.use((req, res) => {
