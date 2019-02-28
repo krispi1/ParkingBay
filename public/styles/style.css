@@ -1,8 +1,50 @@
 .parkingSlot {
-    width: 100px;
     height: 70px;
+    margin: 0 3px;
+    display: grid;
+    grid-column-gap: 5px;
+    background-color: rgb(91, 253, 253);
+    align-content: center;
+    font-size: 1.1em;
+    font-weight: bolder;
 }
 
-.sectionHeader {
-    text-align: center
+.parkingSlot:hover {
+    background-color: rgb(255, 2, 200);
+    height: 74px;
 }
+
+/* .parkingSlot1 {
+    background-color: rgb(255, 123, 0);
+} */
+
+.sectionHeader {
+    text-align: center;
+    margin-bottom: -1px;
+}
+
+.slotClass {
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.container {
+    text-align: center;
+}
+
+/* /* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) { 
+    
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) { ... }
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) { ... }
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199.98px) { ... }
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) { ... } */
