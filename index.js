@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const parkOnSite = require('./app');
 const app = express();
 const PORT = process.env.PORT || 4000;
 
@@ -7,6 +8,7 @@ app.use(express.static('public'));
 
 app.use(require('./routes'));
 
+parkOnSite();
 /* /////
 var requestTime = function (req, res, next) {
     req.requestTime = Date.now()
