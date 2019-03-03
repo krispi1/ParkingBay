@@ -1,12 +1,14 @@
 const express = require('express');
 const path = require('path');
-//const parkOnSite = require('./app');
 const jsdom = require('jsdom').JSDOM;
 const fs = require('fs');
+const morgan = require('morgan');
+//const parkOnSite = require('./app');
 
 const app = express();
 const PORT = process.env.PORT || 4000;
 
+app.use(morgan('combined'));
 app.use(express.static('public'));
 
 app.use(require('./routes'));
