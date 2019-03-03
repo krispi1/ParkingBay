@@ -1,18 +1,19 @@
 const express = require('express');
 const path = require('path');
+const favicon = require('serve-favicon');
 const jsdom = require('jsdom').JSDOM;
 const fs = require('fs');
-const morgan = require('morgan');
+//const morgan = require('morgan');
 //const parkOnSite = require('./app');
 
 const app = express();
 const PORT = process.env.PORT || 4000;
-
-app.use(morgan('combined'));
-app.use(express.static('public'));
+console.log(favicon);
+//app.use(morgan('combined'));
 
 app.use(require('./routes'));
-
+app.use(favicon(path.join(__dirname,'public','favicon.ico')));
+app.use(express.static('public'));
 /* /////
 var requestTime = function (req, res, next) {
     req.requestTime = Date.now()
@@ -44,14 +45,14 @@ app.use((req, res) => {
 
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
 
-//////////////////////////////////
+/////////////////////////////////
 
 const indexHtml = fs.readFileSync('./public/index.html', 'utf8');
 
-const { document } = (new jsdom(indexHtml, { runScripts: "dangerously" })).window;
+const { document } = (new jsdom(indexHtml, { runScripts: "dangerously", resources: "usable" })).window;
 
 function parkOnSite(){
-    console.log("script loaded..");
+    console.log("script loaded.."); 
     const divElems = document.getElementsByClassName("parkingSlot");
     const slotIdsDiv = document.getElementById("slotIds");
     for(var i = 0; i < divElems.length; i++){
