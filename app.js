@@ -11,8 +11,10 @@ const { document } = (new JSDOM(indexHtml, { runScripts: "dangerously" })).windo
 module.exports = function parkOnSite(){
     console.log("script loaded..");
     const divElems = document.getElementsByClassName("parkingSlot");
+    const slotIdsDiv = document.getElementById("slotIds");
     for(var i = 0; i < divElems.length; i++){
         console.log(divElems[i].id);
+        slotIdsDiv.innerHTML += divElems[i].id;
     }
     
 }

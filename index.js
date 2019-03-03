@@ -1,6 +1,9 @@
 const express = require('express');
 const path = require('path');
-const parkOnSite = require('./app');
+//const parkOnSite = require('./app');
+const jsdom = require('jsdom').JSDOM;
+const fs = require('fs');
+
 const app = express();
 const PORT = process.env.PORT || 4000;
 
@@ -8,7 +11,6 @@ app.use(express.static('public'));
 
 app.use(require('./routes'));
 
-parkOnSite();
 /* /////
 var requestTime = function (req, res, next) {
     req.requestTime = Date.now()
@@ -40,9 +42,28 @@ app.use((req, res) => {
 
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
 
+//////////////////////////////////
 
+const indexHtml = fs.readFileSync('./public/index.html', 'utf8');
 
+const { document } = (new jsdom(indexHtml, { runScripts: "dangerously" })).window;
 
+function parkOnSite(){
+    console.log("script loaded..");
+    const divElems = document.getElementsByClassName("parkingSlot");
+    const slotIdsDiv = document.getElementById("slotIds");
+    for(var i = 0; i < divElems.length; i++){
+        //console.log(divElems[i].id);
+        slotIdsDiv.innerHTML += divElems[i].id;
+        document.getElementById(divElems[i].id).addEventListener("click", divItemClicked);
+    }
+}
+console.log(jsdom);
+function divItemClicked(){
+  console.log(alert("id_b08 moused-down"));
+}
+
+parkOnSite();
 
 
 
