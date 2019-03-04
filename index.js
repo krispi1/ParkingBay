@@ -2,17 +2,16 @@ const express = require('express');
 const path = require('path');
 const favicon = require('serve-favicon');
 const jsdom = require('jsdom').JSDOM;
-const fs = require('fs');
-//const morgan = require('morgan');
-//const parkOnSite = require('./app');
+const morgan = require('morgan');
 
 const app = express();
 const PORT = process.env.PORT || 4000;
 console.log(favicon);
-//app.use(morgan('combined'));
+app.use(morgan('tiny'));
 
 app.use(require('./routes'));
-app.use(favicon(path.join(__dirname,'public','favicon.ico')));
+app.use(favicon(__dirname + '/public/favicon.ico'));
+//app.use(favicon(path.join(__dirname,'public','favicon.ico')));
 app.use(express.static('public'));
 /* /////
 var requestTime = function (req, res, next) {
@@ -34,10 +33,6 @@ app.get(['', '/'], (req, res) => {
     res.sendFile(path.join(__dirname + '/index.html'));
 });
 
-/* app.get(['', '/'], (req, res) => {
-  res.send(require('./homepage'));
-}); */
-
 app.use((req, res) => {
     res.status(404)
         .send('Sorry... we couldn\'t find that resource!!');
@@ -46,43 +41,3 @@ app.use((req, res) => {
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
 
 /////////////////////////////////
-
-const indexHtml = fs.readFileSync('./public/index.html', 'utf8');
-
-const { document } = (new jsdom(indexHtml, { runScripts: "dangerously", resources: "usable" })).window;
-
-function parkOnSite(){
-    console.log("script loaded.."); 
-    const divElems = document.getElementsByClassName("parkingSlot");
-    const slotIdsDiv = document.getElementById("slotIds");
-    for(var i = 0; i < divElems.length; i++){
-        //console.log(divElems[i].id);
-        slotIdsDiv.innerHTML += divElems[i].id;
-        document.getElementById(divElems[i].id).addEventListener("click", divItemClicked);
-    }
-}
-console.log(jsdom);
-function divItemClicked(){
-  console.log(alert("id_b08 moused-down"));
-}
-
-parkOnSite();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

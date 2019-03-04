@@ -1,3 +1,4 @@
-import { parkOnSite } from './app.mjs';
+import { parkOnSite, manParkingSlot } from './app.mjs';
   
 parkOnSite();
+manParkingSlot();
